@@ -7,6 +7,8 @@ export default class ShopService extends TransactionBaseService {
   }
 
   async send(message: string) {
-    console.log(`Message: ${message}`);
+    console.log(``);
+    console.log(`>>>>> Slack message: ${message} <<<<<`);
+    console.log(``);
   }
 }

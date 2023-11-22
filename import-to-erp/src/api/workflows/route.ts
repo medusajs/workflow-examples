@@ -7,7 +7,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
   try {
     await workflow.run();
   } catch (error) {
-    throw error;
+    // noop
   }
 
   res.status(200).send({ message: "ok" });

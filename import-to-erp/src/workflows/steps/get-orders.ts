@@ -8,7 +8,6 @@ export const getOrders = createStep("getOrders", async function (_, executionCon
   const orders = await shopService.retrieveDailyOrders();
 
   return new StepResponse({
-    batchNum: "1234",
     orders,
   });
 });

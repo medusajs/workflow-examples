@@ -8,8 +8,6 @@ export const importOrdersWorkflow = createWorkflow<WorkflowInput, void>(
   function (_) {
     /** Get Order from Shop */
     const orderBatch = steps.getOrders({});
-    /** In case the import fails, we have a compensate action to send a failed import notification */
-    steps.sendImportFailedNotification({ batchNum: orderBatch.batchNum });
     /** Import Orders into ERP */
     steps.importOrdersToErp(orderBatch.orders);
     /** Send import successfull */
@@ -22,8 +20,6 @@ export const importOrdersWorkflowFail = createWorkflow<WorkflowInput, void>(
   function (_) {
     /** Get Order from Shop */
     const orderBatch = steps.getOrders({});
-    /** In case the import fails, we have a compensate action to send a failed import notification */
-    steps.sendImportFailedNotification({ batchNum: orderBatch.batchNum });
     /** Fail to import Orders into ERP */
     steps.importOrdersToErpFail(orderBatch.orders);
     /** Send import successfull */

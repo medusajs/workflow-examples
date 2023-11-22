@@ -10,10 +10,3 @@ export const importOrdersToErp = createStep(
     await erpService.import(orders);
   }
 );
-
-export const importOrdersToErpFail = createStep(
-  "importOrdersToErp",
-  async function (orders, executionContext) {
-    throw Error("Failed to import orders to ERP");
-  }
-);
