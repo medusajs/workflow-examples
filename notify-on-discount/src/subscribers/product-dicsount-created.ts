@@ -1,4 +1,4 @@
-import notifyOnDiscountWorkflow from "../workflow/notify-on-dicsount";
+import notifyOnDiscountWorkflow from "../workflows/notify-on-dicsount";
 
 import DiscountService from "../services/discount";
 
