@@ -1,5 +1,5 @@
 import { StepResponse, createStep } from "@medusajs/workflows";
-import { Order, SubscriptionHook } from "../types";
+import { Order, SubscriptionHook } from "../../types";
 
 export const retrieveOrder = createStep(
   "retrieveOrder",

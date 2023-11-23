@@ -6,7 +6,7 @@ import {
   createNewOrder,
   emailUser,
   retrieveOrder,
-} from "../handlers";
+} from "../handlers/subscription";
 import { SubscriptionHook } from "../types";
 
 export const subscriptionWorkflow = createWorkflow<SubscriptionHook, void>(

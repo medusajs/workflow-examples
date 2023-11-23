@@ -1,6 +1,6 @@
 import { StepResponse, createStep } from "@medusajs/workflows";
-import Wms from "../services/wms";
-import { Allocation, Order } from "../types";
+import Wms from "../../services/wms";
+import { Allocation, Order } from "../../types";
 
 export const allocateStockWms = createStep(
   "allocateWms",

@@ -1,5 +1,5 @@
 import { createStep, StepResponse } from "@medusajs/workflows";
-import { Order, PaymentData, SubscriptionHook } from "../types";
+import { Order, PaymentData, SubscriptionHook } from "../../types";
 
 export const emailUser = createStep(
   "emailUser",

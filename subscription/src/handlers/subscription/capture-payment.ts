@@ -1,5 +1,5 @@
 import { StepResponse, createStep } from "@medusajs/workflows";
-import { PaymentData, SubscriptionHook } from "../types";
+import { PaymentData, SubscriptionHook } from "../../types";
 
 export const capturePayment = createStep(
   "capturePayment",
