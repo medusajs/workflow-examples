@@ -14,10 +14,6 @@ type CreateVariantsStepData = {
   newProduct: Product;
 };
 
-type CreateVariantsStepReturnData = {
-  variants: ProductVariant[];
-};
-
 export const createVariantsStep = createStep(
   "create-variants-step",
   async function (input: CreateVariantsStepData, context) {
@@ -81,12 +77,6 @@ export const createVariantsStep = createStep(
           prices: pricesInput,
         };
       });
-
-    console.log(">>> variantsInput", JSON.stringify(variantsInput, null, 2));
-    console.log(
-      ">>> newProduct.variants",
-      JSON.stringify(newProduct.variants, null, 2)
-    );
 
     const result = (await productVariantServiceTx.create<
       CreateProductVariantInput[]
