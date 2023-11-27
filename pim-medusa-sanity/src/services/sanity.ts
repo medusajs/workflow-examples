@@ -22,7 +22,7 @@ class SanityService extends BaseService {
 
   async createProducts(products: ProductDTO[]) {
     const client = this.client.transaction();
-    products.forEach((p) =>
+    const promises = products.map((p) =>
       this.client.create({
         _type: "product",
         title: p.title,
@@ -31,7 +31,10 @@ class SanityService extends BaseService {
     );
 
     const res = await client.commit();
-    return res.documentIds; // TODO: check this -> returns empty array
+    // TODO: check this -> returns empty array
+    // return res.documentIds;
+
+    return (await Promise.all(promises)).map((record) => record._id);
   }
 
   async deleteProducts(ids: string[]) {
