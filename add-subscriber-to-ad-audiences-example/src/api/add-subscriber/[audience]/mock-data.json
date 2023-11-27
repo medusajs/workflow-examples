@@ -1,0 +1,60 @@
+{
+  "id": "cus_01HFS23MZ27C5GJ7HZCVQVTBVQ",
+  "created_at": "2023-11-21T13:46:25.115Z",
+  "updated_at": "2023-11-21T14:16:54.696Z",
+  "deleted_at": null,
+  "email": "victor@medusajs.com",
+  "first_name": "Victor",
+  "last_name": "Gerbrands",
+  "billing_address_id": null,
+  "phone": "0624169563",
+  "has_account": true,
+  "metadata": null,
+  "orders": [
+    {
+      "object": "order",
+      "id": "order_01HFS57SATJA6GG9R8D8HN9EQW",
+      "created_at": "2023-11-21T14:41:06.357Z",
+      "updated_at": "2023-11-21T14:41:06.357Z",
+      "status": "pending",
+      "fulfillment_status": "not_fulfilled",
+      "payment_status": "awaiting",
+      "display_id": 15,
+      "cart_id": "cart_01HFRS51V8RKJK7XV95JMZKK1A",
+      "customer_id": "cus_01HFS23MZ27C5GJ7HZCVQVTBVQ",
+      "email": "victor@medusajs.com",
+      "billing_address_id": "addr_01HFS4BXRE75P9C7BRAMWA7XPK",
+      "shipping_address_id": "addr_01HFRS51V8080VQ0PYBE7J7STQ",
+      "region_id": "reg_01HFC2RWN8SZP9ZT39NNZ3WC9R",
+      "currency_code": "eur",
+      "tax_rate": null,
+      "draft_order_id": null,
+      "canceled_at": null,
+      "metadata": {},
+      "no_notification": null,
+      "idempotency_key": null,
+      "external_id": null,
+      "sales_channel_id": "sc_01HDKB5TJZAY99058MXE4ZVMZG"
+    }
+  ],
+  "shipping_addresses": [
+    {
+      "id": "addr_01HFS3E4P2RHA6K3BWQAM8F3GZ",
+      "created_at": "2023-11-21T14:09:37.462Z",
+      "updated_at": "2023-11-21T14:09:37.462Z",
+      "deleted_at": null,
+      "customer_id": "cus_01HFS23MZ27C5GJ7HZCVQVTBVQ",
+      "company": "Medusa",
+      "first_name": "Victor",
+      "last_name": "Gerbrands",
+      "address_1": "Hoogstraat 63D",
+      "address_2": "",
+      "city": "Rotterdam",
+      "country_code": "nl",
+      "province": "Zuid-Holland",
+      "postal_code": "3011PH",
+      "phone": "0624169563",
+      "metadata": {}
+    }
+  ]
+}
