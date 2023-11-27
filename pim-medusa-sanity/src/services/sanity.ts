@@ -27,6 +27,7 @@ class SanityService extends BaseService {
         _type: "product",
         title: p.title,
         description: p.description,
+        category_id: p.categories?.[0]?.id,
       })
     );
 
