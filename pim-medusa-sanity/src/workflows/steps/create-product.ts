@@ -1,37 +1,22 @@
 import { createStep, StepResponse } from "@medusajs/workflows";
-
-import { Product, ProductService } from "@medusajs/medusa";
-import { CreateProductInput } from "@medusajs/medusa/dist/types/product";
+import { CreateProductDTO, ProductDTO } from "@medusajs/types";
 
 /**
  * Create Medusa product step
  */
 export const createProductStep = createStep(
   "createProductStep",
-  async (
-    productData: Partial<CreateProductInput>[],
-    { container, context }
-  ) => {
-    const productService: ProductService = container.resolve("productService");
-    let products: Product[] = (await Promise.all(
-      productData.map((p) =>
-        // @ts-ignore
-        productService.withTransaction(context.manager).create(p as any)
-      )
-    )) as unknown as Product[];
+  async (productData: CreateProductDTO[], { container, context }) => {
+    const productService = container.resolve("productModuleService");
 
-    return new StepResponse(
-      await productService
-        // @ts-ignore
-        .withTransaction(context.manager)
-        .list({ id: products.map((p) => p.id) }, { relations: ["categories"] })
-    );
+    const prodcuts: ProductDTO[] = await productService.create(productData);
+    return new StepResponse(prodcuts);
   },
-  async (products: Product[] | undefined, { container, context }) => {
-    const productService: ProductService = container
-      .resolve("productService")
-      .withTransaction(context.manager);
-
-    await Promise.all(products.map((p) => productService.delete(p.id)));
+  async (products: ProductDTO[] | undefined, { container, context }) => {
+    if (!products) {
+      return;
+    }
+    const productService = container.resolve("productModuleService");
+    await productService.delete(products.map((p) => p.id));
   }
 );

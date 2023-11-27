@@ -67,24 +67,15 @@ const modules = {
       redisUrl: REDIS_URL
     }
   },*/
-  productService: {
-    resolve: "@medusajs/product",
-    resources: "isolated",
-    options: {
-      database: {
-        clientUrl: "postgres://localhost/medusa-store-product",
-      },
-    },
-  },
-  pricingService: {
-    resolve: "@medusajs/pricing",
-    resources: "isolated",
-    options: {
-      database: {
-        clientUrl: "postgres://localhost/medusa-store-pricing",
-      },
-    },
-  },
+  // productService: {
+  //   resolve: "@medusajs/product",
+  //   resources: "isolated",
+  //   options: {
+  //     database: {
+  //       clientUrl: "postgres://localhost/medusa-store-product",
+  //     },
+  //   },
+  // },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
@@ -102,8 +93,5 @@ const projectConfig = {
 module.exports = {
   projectConfig,
   plugins,
-  featureFlags: {
-    medusa_v2: true,
-  },
   modules,
 };
