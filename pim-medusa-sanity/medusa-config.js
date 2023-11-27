@@ -67,15 +67,15 @@ const modules = {
       redisUrl: REDIS_URL
     }
   },*/
-  productService: {
-    resolve: "@medusajs/product",
-    resources: "isolated",
-    options: {
-      database: {
-        clientUrl: "postgres://localhost/medusa-store-product",
-      },
-    },
-  },
+  // productService: {
+  //   resolve: "@medusajs/product",
+  //   resources: "isolated",
+  //   options: {
+  //     database: {
+  //       clientUrl: "postgres://localhost/medusa-store-product",
+  //     },
+  //   },
+  // },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */

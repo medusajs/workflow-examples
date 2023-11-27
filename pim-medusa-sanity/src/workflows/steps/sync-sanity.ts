@@ -1,13 +1,13 @@
 import { createStep, StepResponse } from "@medusajs/workflows";
 
-import { ProductDTO } from "@medusajs/types";
+import { Product } from "@medusajs/medusa";
 
 /**
  * Sync products wth Sanity CMS step
  */
 export const syncSanityStep = createStep(
   "syncSanityStep",
-  async (products: ProductDTO[], { container, context }) => {
+  async (products: Product[], { container, context }) => {
     const sanityService = container.resolve("sanityService");
 
     const ids = await sanityService.createProducts(products);

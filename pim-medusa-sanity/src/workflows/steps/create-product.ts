@@ -1,33 +1,37 @@
 import { createStep, StepResponse } from "@medusajs/workflows";
 
-import { initialize as ProductModuleInitialize } from "@medusajs/product";
-import { CreateProductDTO, ProductDTO } from "@medusajs/types";
+import { Product, ProductService } from "@medusajs/medusa";
+import { CreateProductInput } from "@medusajs/medusa/dist/types/product";
 
 /**
  * Create Medusa product step
  */
 export const createProductStep = createStep(
   "createProductStep",
-  async (productData: CreateProductDTO[], { container, context }) => {
-    const productService = await ProductModuleInitialize({
-      database: {
-        clientUrl: "postgres://localhost/medusa-store-product",
-      },
-    });
+  async (
+    productData: Partial<CreateProductInput>[],
+    { container, context }
+  ) => {
+    const productService: ProductService = container.resolve("productService");
+    let products: Product[] = (await Promise.all(
+      productData.map((p) =>
+        // @ts-ignore
+        productService.withTransaction(context.manager).create(p as any)
+      )
+    )) as unknown as Product[];
 
-    const products = await productService.create(productData);
-
-    return new StepResponse(products);
+    return new StepResponse(
+      await productService
+        // @ts-ignore
+        .withTransaction(context.manager)
+        .list({ id: products.map((p) => p.id) }, { relations: ["categories"] })
+    );
   },
-  async (prodcuts: ProductDTO[] | undefined, { container, context }) => {
-    const productService = await ProductModuleInitialize({
-      database: {
-        clientUrl: "postgres://localhost/medusa-store-product",
-      },
-    });
+  async (products: Product[] | undefined, { container, context }) => {
+    const productService: ProductService = container
+      .resolve("productService")
+      .withTransaction(context.manager);
 
-    const product = productService.delete(prodcuts.map((p) => p.id));
-
-    return new StepResponse(product);
+    await Promise.all(products.map((p) => productService.delete(p.id)));
   }
 );
