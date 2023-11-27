@@ -11,11 +11,12 @@ class SanityService extends BaseService {
     super(...arguments[0]);
 
     this.client = createClient({
-      // projectId: "your-project-id",
-      // dataset: "your-dataset-name",
-      // useCdn: true, // set to `false` to bypass the edge cache
-      // apiVersion: "2023-05-03", // use current date (YYYY-MM-DD) to target the latest API version
-      // resultSourceMap: true, // tells the API to start sending source maps, if available
+      projectId: "w484o9iy",
+      dataset: "production",
+      useCdn: true, // set to `false` to bypass the edge cache
+      apiVersion: "2023-11-27", // use current date (YYYY-MM-DD) to target the latest API version
+      resultSourceMap: true, // tells the API to start sending source maps, if available
+      token: process.env.SANITY_SECRET_TOKEN,
     });
   }
 
@@ -30,7 +31,7 @@ class SanityService extends BaseService {
     );
 
     const res = await client.commit();
-    return res.documentIds;
+    return res.documentIds; // TODO: check this -> returns empty array
   }
 
   async deleteProducts(ids: string[]) {
