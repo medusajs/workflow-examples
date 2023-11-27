@@ -11,5 +11,5 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     context: { manager },
   });
 
-  res.send(products);
+  res.send(products.result);
 }
