@@ -1,36 +1,31 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
-<h1 align="center">
-  Medusa
-</h1>
 
-<h4 align="center">
-  <a href="https://docs.medusajs.com">Documentation</a> |
-  <a href="https://www.medusajs.com">Website</a>
-</h4>
+# PIM to Sanity sync workflow example
 
-<p align="center">
-  Building blocks for digital commerce
-</p>
-<p align="center">
-  <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
-  </a>
-    <a href="https://www.producthunt.com/posts/medusa"><img src="https://img.shields.io/badge/Product%20Hunt-%231%20Product%20of%20the%20Day-%23DA552E" alt="Product Hunt"></a>
-  <a href="https://discord.gg/xpCwq3Kfn8">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
-  </a>
-</p>
+The Workflow in this project simulates a import flow between an PIM (Product Information Management) system and a Sanity CMS.
+
+## Prerequisites
+
+Before you begin, ensure you have created a Postgres database with name `medusa-store` and a `.env` file with the following variable:
+
+Also make sure you've [created Sanity account](https://www.sanity.io/docs/getting-started-with-sanity) and have created access token via Sanity dashboard. 
+
+```
+POSTGRES_URL=postgres://localhost/medusa-store
+SANITY_SECRET_TOKEN= <<your_sanity_token>>
+```
+
+## Getting started
+
+To set up the project, run the following commands:
+
+```
+npm install
+npm run build
+npx @medusajs/medusa-cli@latest migrations run
+npm run dev
+```
+
+## How it works?
 
 ```mermaid
 flowchart TB
@@ -41,39 +36,81 @@ flowchart TB
 	createProductStep --> syncSanityStep
 ```
 
-## Compatibility
 
-This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
+### High-level overview
 
-## Getting Started
+- A import is triggered via HTTP POST call
+- Medusa receives a webhook event from the PIM
+- Our Workflow is executed
+- Products in Medusa are created using product module
+- Records are created in the Sanity CMS
 
-Visit the [Quickstart Guide](https://docs.medusajs.com/create-medusa-app) to set up a server.
+## Workflow
 
-Visit the [Docs](https://docs.medusajs.com/development/backend/prepare-environment) to learn more about our system requirements.
+The following steps are performed in the Workflow.
 
-## What is Medusa
+See [`src/workflows/pim-import.ts`](/pim-medusa-sanity/src/workflows/pim-import.ts).
 
-Medusa is a set of commerce modules and tools that allow you to build rich, reliable, and performant commerce applications without reinventing core commerce logic. The modules can be customized and used to build advanced ecommerce stores, marketplaces, or any product that needs foundational commerce primitives. All modules are open-source and freely available on npm.
+**Create Product**
 
-Learn more about [Medusa’s architecture](https://docs.medusajs.com/development/fundamentals/architecture-overview) and [commerce modules](https://docs.medusajs.com/modules/overview) in the Docs.
+The products are created using [Medusa Product Module](https://docs.medusajs.com/experimental/product/overview). This will create the products in Medusa.
 
-## Roadmap, Upgrades & Plugins
+See [`src/workflows/steps/create-product.ts`](/pim-medusa-sanity/src/workflows/steps/create-product.ts).
 
-You can view the planned, started and completed features in the [Roadmap discussion](https://github.com/medusajs/medusa/discussions/categories/roadmap).
+**Sync Sanity**
 
-Follow the [Upgrade Guides](https://docs.medusajs.com/upgrade-guides/) to keep your Medusa project up-to-date.
+After creating the products in Medusa, we create corresponding records in Sanity using the client.
 
-Check out all [available Medusa plugins](https://medusajs.com/plugins/).
+See [`src/workflows/steps/sync-sanity.ts`](/src/workflows/steps/sync-sanity.ts).
 
-## Community & Contributions
+### Executing the workflow
 
-The community and core team are available in [GitHub Discussions](https://github.com/medusajs/medusa/discussions), where you can ask for support, discuss roadmap, and share ideas.
+The Workflow is executed by a webhook created using our API Routes.
 
-Join our [Discord server](https://discord.com/invite/medusajs) to meet other community members.
+See [`src/api/products/route.ts`](/pim-medusa-sanity/src/api/products/route.ts).
 
-## Other channels
+Upon receiving the webhook event from PIM, the Workflow is executed:
 
-- [GitHub Issues](https://github.com/medusajs/medusa/issues)
-- [Twitter](https://twitter.com/medusajs)
-- [LinkedIn](https://www.linkedin.com/company/medusajs)
-- [Medusa Blog](https://medusajs.com/blog/)
+```ts
+// ...
+const products = await pimWorkflow.run({
+    input: { productData: req.body },
+    context: { manager },
+});
+res.send(products.result);
+// ...
+```
+
+## Try it out
+
+To test the Workflow:
+
+- Run `npm run dev`
+- Run `curl --location --request POST 'http://localhost:9000/products' \
+  --header 'Content-Type: application/json' \
+  --data-raw '[{
+  "title": "Test product 1",
+  "description": "Product 1 description"
+  },
+  {
+  "title": "Test product 2",
+  "description": "Product 2 description"
+  }]'`
+
+You should receive a response with an array of created products in Medusa.
+
+## Error handling
+
+If an error occurs in one of the steps in your Workflow, the built-in rollback mechanism will kick in. Each step can have a defined compensation action to revert its changes if the workflow fails in a subsequent step.
+
+Learn more about compensation actions in [our documentation](https://docs.medusajs.com/development/workflows/#add-error-handling).
+
+Our Workflow performs compensating actions for two steps:
+
+- Products created in medusa
+  - created products will be deleted for compensation
+- Records created in Sanity
+  - created records will be deleted for compensation
+
+You can explore the compensation actions in [`src/workflows/steps/create-product.ts`](/pim-medusa-sanity/src/workflows/steps/create-product.ts).
+

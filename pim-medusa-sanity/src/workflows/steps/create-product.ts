@@ -9,8 +9,8 @@ export const createProductStep = createStep(
   async (productData: CreateProductDTO[], { container, context }) => {
     const productService = container.resolve("productModuleService");
 
-    const prodcuts: ProductDTO[] = await productService.create(productData);
-    return new StepResponse(prodcuts);
+    const products: ProductDTO[] = await productService.create(productData);
+    return new StepResponse(products);
   },
   async (products: ProductDTO[] | undefined, { container, context }) => {
     if (!products) {
