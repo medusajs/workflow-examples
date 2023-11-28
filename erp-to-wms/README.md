@@ -40,13 +40,13 @@ See `/src/workflows/purchase-order.ts`.
 
 The Purchase Order is retrieved using the `ErpService` (`/src/services/erp.ts`). This service returns a mock Purchase Order. In a real-world scenario, this service would interact with your ERP to retrieve the Purchase Order.
 
-See `src/steps/get-purchase-order.ts`.
+See [`src/steps/get-purchase-order.ts`](/erp-to-wms/src/steps/get-purchase-order.ts).
 
 **Retrieve Products**
 
 The Purchase Order contains order lines, that each has a reference to a Product in Medusa. After retrieving the Purchase Order, we fetch the Products from Medusa using our Product Module [INSERT LINK].
 
-See `src/steps/get-products.ts`.
+See [`src/steps/get-products.ts`](/erp-to-wms/src/steps/get-purchase-order.ts).
 
 **Extract expected restock date from Purchase Order**
 
