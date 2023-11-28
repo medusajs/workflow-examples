@@ -72,6 +72,12 @@ Once products are created, we retrieve customers who bought products from that c
 
 See [`src/workflows/steps/get-customers-for-product-category.ts`](/notify-category-customers/src/workflows/steps/get-customers-for-product-category.ts).
 
+**Notify Active Cart Customers**
+
+Send an email via email mock service to notify customers about the new product in the category.
+
+See [`src/workflows/steps/notify-customers.ts`](/notify-category-customers/src/workflows/steps/notify-customers.ts).
+
 ### Executing the workflow
 
 The Workflow is executed by a webhook created using our API Routes.
