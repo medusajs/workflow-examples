@@ -45,14 +45,7 @@ const plugins = [
 ];
 
 const modules = {
-  productService: {
-    resolve: "@medusajs/product",
-    options: {
-      database: {
-        debug: false
-      },
-    },
-  },
+  productService: "@medusajs/product"
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
