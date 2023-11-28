@@ -1,6 +1,10 @@
-# Medusa - ERP to WMS Workflow Example
+# ERP to WMS Workflow Example
 
-![Alt text](image.png)
+The Workflow in this project simulates a Purchase Order flow between an ERP (Enterprise Resource Planning) system and a WMS (Warehouse Management System).
+
+<div align="center">
+<img src="image.png" width="300" />
+</div>
 
 ## Prerequisites
 
@@ -25,8 +29,6 @@ npm run dev
 ## How it works?
 
 ### High-level overview
-
-The Workflow in this project simulates a Purchase Order flow between an ERP (Enterprise Resource Planning) system and a WMS (Warehouse Management System):
 
 - A Purchase Order is created in the ERP
 - Medusa receives a webhook event from the ERP
