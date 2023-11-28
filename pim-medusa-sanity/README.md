@@ -32,6 +32,15 @@
   </a>
 </p>
 
+```mermaid
+flowchart TB
+	createProductStep(Create Product Step)
+	
+	syncSanityStep(Sync Sanity Step)
+
+	createProductStep --> syncSanityStep
+```
+
 ## Compatibility
 
 This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
