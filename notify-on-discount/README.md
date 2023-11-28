@@ -32,6 +32,19 @@
   </a>
 </p>
 
+```mermaid
+flowchart TB
+	retrieveCartsWithDiscountedProductsStep(Retrieve Carts With Discounted Products Step)
+	
+	applyDiscountOnCartStep(Apply Discount On Cart Step)
+	
+	notifyActiveCartCustomersStep(Notify Active Cart Customers Step)
+
+	retrieveCartsWithDiscountedProductsStep --> applyDiscountOnCartStep
+		
+	applyDiscountOnCartStep --> notifyActiveCartCustomersStep
+```
+
 ## Compatibility
 
 This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
