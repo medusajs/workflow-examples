@@ -13,6 +13,7 @@ type StepOutput = {
 export const retrieveProducts = createStep<StepInput, StepOutput, any>(
   "retrieve-products",
   async function ({ purchaseOrder }, context) {
+    console.log("Running step `retrieve-products`")
     const prodIds = purchaseOrder.lines.map((p) => p.line_id);
     const productService: IProductModuleService = context.container.resolve(
       "productModuleService"

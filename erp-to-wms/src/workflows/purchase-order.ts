@@ -21,6 +21,7 @@ export const confirmPurchaseOrder = createWorkflow<WorkflowInput, void>(
     const expectedRestockDate = transform(
       { purchaseOrder },
       ({ purchaseOrder }) => {
+        console.log("Extracting expected restock date");
         return purchaseOrder.expected_restock;
       }
     );

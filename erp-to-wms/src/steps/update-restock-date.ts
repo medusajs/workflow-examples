@@ -13,6 +13,7 @@ type StepOutput = {
 export const updateExpectedRestockDate = createStep<StepInput, StepOutput, any>(
   "update-expected-restock-date",
   async function ({ expectedRestockDate, products }, context) {
+    console.log("Running step `update-expected-restock-date`")
     const productService: IProductModuleService = context.container.resolve(
       "productModuleService"
     );
@@ -30,7 +31,6 @@ export const updateExpectedRestockDate = createStep<StepInput, StepOutput, any>(
     return new StepResponse({ products: updatedProducts });
   },
   async function ({ products }, context) {
-    // Rolling back -> Removing the expected restock date on Products
     console.log("Rolling back expected restock date on Products");
     const productService: IProductModuleService = context.container.resolve(
       "productModuleService"

@@ -12,6 +12,7 @@ type StepOutput = {
 export const createInboundOrder = createStep<StepInput, StepOutput, any>(
   "create-inbound-order",
   async function ({ wmsOrder }, context) {
+    console.log("Running step `create-inbound-order`")
     const wmsService: WmsService = context.container.resolve("wmsService");
 
     const inboundOrder = await wmsService.createInboundOrder(wmsOrder);
@@ -19,7 +20,6 @@ export const createInboundOrder = createStep<StepInput, StepOutput, any>(
     return new StepResponse({ inboundOrder });
   },
   async function ({ inboundOrder }, context) {
-    // Rolling back -> Remove the inbound order
     console.log("Rolling back inbound order");
     const wmsService: WmsService = context.container.resolve("wmsService");
     await wmsService.deleteInboundOrder(inboundOrder.id);

@@ -48,7 +48,9 @@ const modules = {
   productService: {
     resolve: "@medusajs/product",
     options: {
-      clientUrl: DATABASE_URL,
+      database: {
+        debug: false
+      },
     },
   },
 };
