@@ -4,7 +4,7 @@ This example demostrates how to implement a workflow that duplicates a product.
 
 ## How to use
 
-A new widget has been added to the product details page in the admin UI. The widget is located in top right corner of the page, and is a round button with a tool icon. Clicking the button will reveal a dropdown menu with a single option, "Duplicate Product".
+A new widget has been added to the product details page in the admin UI. The widget is located in top right corner of the page, and is a round button with a tool icon. Clicking the button will reveal a dropdown menu with a single option, "Duplicate".
 
 <img width="1354" alt="Screenshot 2023-11-22 at 19 15 05" src="https://github.com/medusajs/workflow-examples/assets/45367945/2ca401c1-1b25-4b23-8b48-20d4ce5187f1">
 
