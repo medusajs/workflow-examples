@@ -1,5 +1,7 @@
 # Medusa - ERP to WMS Workflow Example
 
+![Alt text](image.png)
+
 ## Prerequisites
 
 Before you begin, ensure you have created a Postgres database with name `erp-to-wms-workflow` and a `.env` file with the following variable:
