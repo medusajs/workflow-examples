@@ -1,7 +1,7 @@
 
 # PIM to Sanity sync workflow example
 
-The Workflow in this project simulates a import flow between an PIM (Product Information Management) system and a Sanity CMS.
+The Workflow in this project simulates an import flow between an PIM (Product Information Management) system and a Sanity CMS.
 
 ## Prerequisites
 
@@ -61,7 +61,7 @@ See [`src/workflows/steps/create-product.ts`](/pim-medusa-sanity/src/workflows/s
 
 After creating the products in Medusa, we create corresponding records in Sanity using the client.
 
-See [`src/workflows/steps/sync-sanity.ts`](/src/workflows/steps/sync-sanity.ts).
+See [`src/workflows/steps/sync-sanity.ts`](/pim-medusa-sanity/src/workflows/steps/sync-sanity.ts).
 
 ### Executing the workflow
 

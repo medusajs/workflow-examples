@@ -1,6 +1,7 @@
-import { createStep, StepResponse } from "@medusajs/workflows";
-import CustomerProductCategoryService from "../../services/customer-product-category";
 import { CustomerService } from "@medusajs/medusa";
+import { createStep, StepResponse } from "@medusajs/workflows";
+
+import CustomerProductCategoryService from "../../services/customer-product-category";
 
 /**
  * Fetch customers who bought from the category

@@ -1,4 +1,4 @@
-import { StepResponse, createWorkflow, transform } from "@medusajs/workflows";
+import { createWorkflow, transform } from "@medusajs/workflows";
 import { CreateProductInput } from "@medusajs/medusa/dist/types/product";
 import { Product } from "@medusajs/medusa";
 
