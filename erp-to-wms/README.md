@@ -29,23 +29,23 @@ npm run dev
 ## How it works?
 
 ```mermaid
-	flowchart TB
-		getpurchaseorder(get-purchase-order)
-		
-		retrieveproducts(retrieve-products)
-		
-		subgraph parallel2uaj [Parallel]
-		
-		updateexpectedrestockdate(update-expected-restock-date)
-		createinboundorder(create-inbound-order)
-		end
-		
+flowchart TB
+  getpurchaseorder(Get Purchase Order)
+  
+  retrieveproducts(Retrieve Products)
+  
+  subgraph parallelhSNY [Parallel]
+  
+  updateexpectedrestockdate(Update Expected Restock Date)
+  createinboundorder(Create Inbound Order)
+  end
+  
 
-		getpurchaseorder --> retrieveproducts
-		
-		retrieveproducts --> updateexpectedrestockdate
-		
-		retrieveproducts --> createinboundorder
+  getpurchaseorder --> retrieveproducts
+  
+  retrieveproducts --> updateexpectedrestockdate
+  
+  retrieveproducts --> createinboundorder
 ```
 
 ### High-level overview
