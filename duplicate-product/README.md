@@ -16,7 +16,26 @@ Once the form is submitted, the workflow will be triggered. The user will be not
 
 ## How it works
 
-[Insert flowchart]
+```mermaid
+flowchart TB
+	getoriginalproductstep(Get Original Product Step)
+	
+	createproductstep(Create Product Step)
+	
+	createvariantsstep(Create Variants Step)
+	
+	createinventoryitemsstep(Create Inventory Items Step)
+	
+	setadminpricingstep(Set Admin Pricing Step)
+
+	getoriginalproductstep --> createproductstep
+		
+	createproductstep --> createvariantsstep
+		
+	createvariantsstep --> createinventoryitemsstep
+		
+	createinventoryitemsstep --> setadminpricingstep
+```
 
 ## Workflow
 
