@@ -6,11 +6,11 @@ This example demostrates how to implement a workflow that duplicates a product.
 
 A new widget has been added to the product details page in the admin UI. The widget is located in top right corner of the page, and is a round button with a tool icon. Clicking the button will reveal a dropdown menu with a single option, "Duplicate Product".
 
-[Insert image on GH]
+<img width="1354" alt="Screenshot 2023-11-22 at 19 15 05" src="https://github.com/medusajs/workflow-examples/assets/45367945/2ca401c1-1b25-4b23-8b48-20d4ce5187f1">
 
 Clicking the option will open a drawer with a form. The form allows the user to specify a new name for the duplicated product, as well as selecting which attributes to copy from the original product. The form also allows the user to specify whether the duplicated product should be published immediately, or be created in draft state.
 
-[Insert image on GH]
+<img width="1354" alt="Screenshot 2023-11-22 at 19 13 12" src="https://github.com/medusajs/workflow-examples/assets/45367945/444ac392-7e7c-4867-bda3-a346cbce84bb">
 
 Once the form is submitted, the workflow will be triggered. The user will be notified of the success or failure of the workflow through a toast notification. On success, the user will be redirected to the details page of the duplicated product.
 
