@@ -30,7 +30,7 @@ npm run dev
 
 ```mermaid
 	flowchart TB
-		getpo(get-po)
+		getpurchaseorder(get-purchase-order)
 		
 		retrieveproducts(retrieve-products)
 		
@@ -41,7 +41,7 @@ npm run dev
 		end
 		
 
-		getpo --> retrieveproducts
+		getpurchaseorder --> retrieveproducts
 		
 		retrieveproducts --> updateexpectedrestockdate
 		

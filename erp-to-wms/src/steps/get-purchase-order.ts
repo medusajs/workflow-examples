@@ -10,9 +10,9 @@ type StepOutput = {
 };
 
 export const getPurchaseOrder = createStep<StepInput, StepOutput, any>(
-  "get-po",
+  "get-purchase-order",
   async function ({ purchaseOrderId }, context) {
-    console.log("Running step `get-po`")
+    console.log("Running step `get-purchase-order`")
     const erpService: ErpService = context.container.resolve("erpService");
 
     const purchaseOrder = await erpService.getPurchaseOrder(purchaseOrderId);
