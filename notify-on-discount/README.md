@@ -47,6 +47,7 @@ flowchart TB
 ## Workflow
 
 The following steps are performed in the Workflow.
+See [`src/workflows/notify-on-discount.ts`](/notify-on-discount/src/workflows/notify-on-discount.ts).
 
 **Retrieve Carts With Discounted Products Step**
 
@@ -58,19 +59,19 @@ See [`/src/workflows/notify-on-discount.ts`](/notify-on-discount/src/workflows/n
 
 Apply new discount on the carts retrieved in the previous step.
 
-See [`src/steps/apply-discount-on-cart-step.ts`](notify-on-discount/src/workflows/steps/apply-discount-on-cart-step.ts).
+See [`src/steps/apply-discount-on-cart-step.ts`](/notify-on-discount/src/workflows/steps/apply-discount-on-cart-step.ts).
 
 **Notify Active Cart Customers**
 
 Send an email via email mock service to notify customers about the change in their cart.
 
-See [`src/steps/notify-active-cart-customers.ts`](notify-on-discount/src/workflows/steps/notify-active-cart-customers.ts).
+See [`src/steps/notify-active-cart-customers.ts`](/notify-on-discount/src/workflows/steps/notify-active-cart-customers.ts).
 
 ### Executing the workflow
 
 The Workflow is executed by a subscriber.
 
-See [`src/subscribers/product-dicsount-created.ts`](notify-on-discount/src/subscribers/product-dicsount-created.ts).
+See [`src/subscribers/product-dicsount-created.ts`](/notify-on-discount/src/subscribers/product-dicsount-created.ts).
 
 Upon receiving the discount created event, the Workflow is executed and potential errors are handled:
 
@@ -94,7 +95,7 @@ To test the Workflow:
 - Create a cart with a product in Medusa store
 - Create a discount for that product in Medusa admin
 
-After discount is created, in your terminal, you should see a log about :
+After discount is created, in your terminal, you should see a log from the email service.
 
 ## Error handling
 
@@ -105,7 +106,7 @@ Learn more about compensation actions in [our documentation](https://docs.medusa
 Our Workflow performs compensating actions for:
 
 - Applying Discount on Cart step
-  - in case one of the following steps fail, discount will be removed from the carts
+  - in case one of the following steps fail, the discount will be removed from the carts
 
 You can explore the compensation actions in [`src/workflows/steps/apply-discount-on-cart-step.ts`](notify-on-discount/src/workflows/steps/apply-discount-on-cart-step.ts).
 

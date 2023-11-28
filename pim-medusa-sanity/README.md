@@ -39,11 +39,11 @@ flowchart TB
 
 ### High-level overview
 
-- A import is triggered via HTTP POST call
+- An import is triggered via HTTP POST call
 - Medusa receives a webhook event from the PIM
 - Our Workflow is executed
 - Products in Medusa are created using product module
-- Records are created in the Sanity CMS
+- Records are created in Sanity CMS
 
 ## Workflow
 
