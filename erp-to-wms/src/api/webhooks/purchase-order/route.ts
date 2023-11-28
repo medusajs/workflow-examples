@@ -16,7 +16,8 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     }));
 
     res.json(errResponse).status(500);
+    return
   }
 
-  res.status(200);
+  res.json({ message: "success" }).status(200);
 }

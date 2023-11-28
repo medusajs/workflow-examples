@@ -20,13 +20,10 @@ export default class ErpService extends TransactionBaseService {
       expected_restock: new Date(),
       lines: [
         {
-          line_id: "prod_01HG94VWBT0D9TZXEQFB86H8RN",
+          line_id: "prod_123456789",
         },
         {
-          line_id: "prod_01HG94VTHMBABHJYYDMS5TNQWM",
-        },
-        {
-          line_id: "prod_01HG94VS9YTVDVH0DZ5Z8PPPHS",
+          line_id: "prod_987654321",
         },
       ],
     });
