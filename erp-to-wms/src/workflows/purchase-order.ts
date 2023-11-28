@@ -1,7 +1,8 @@
 import {
   createWorkflow,
   parallelize,
-  transform
+  transform,
+  createStep
 } from "@medusajs/workflows-sdk";
 
 import * as steps from "../steps";
