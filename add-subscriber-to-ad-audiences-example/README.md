@@ -32,6 +32,25 @@
   </a>
 </p>
 
+```mermaid
+flowchart TB
+	transformdata(Transform Data)
+	
+	subgraph parallelwyIV [Parallel]
+	
+	addsubscribertomailchimp(Add Subscriber To Mailchimp)
+	addsubscribertogoogleads(Add Subscriber To Google Ads)
+	addsubscribertometaads(Add Subscriber To Meta Ads)
+	end
+	
+
+	transformdata --> addsubscribertomailchimp
+		
+	transformdata --> addsubscribertogoogleads
+		
+	transformdata --> addsubscribertometaads
+```
+
 ## Compatibility
 
 This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
