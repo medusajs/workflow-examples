@@ -29,25 +29,6 @@ npm run dev
 ## How it works?
 
 ```mermaid
-%%{
-    init: {
-      'theme': 'base',
-      'themeVariables': {
-        'background': '#FFFFFF',
-        'mainBkg': '#FFFFFF',
-        'primaryColor': '#FFFFFF',
-        'primaryTextColor': '#030712',
-        'primaryBorderColor': '#D1D5DB',
-        'nodeBorder': '#D1D5DB',
-        'lineColor': '#11181C',
-        'fontFamily': 'Inter',
-        'fontSize': '13px',
-        'tertiaryColor': '#F3F4F6',
-        'tertiaryBorderColor': '#D1D5DB',
-        'tertiaryTextColor': '#030712'
-      }
-    }
-  }%%
 	flowchart TB
 		getpo(get-po)
 		
